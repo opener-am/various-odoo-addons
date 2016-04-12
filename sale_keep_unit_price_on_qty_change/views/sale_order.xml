@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">Add context key to keep unit price</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_uom_qty']"
+                       position="attributes">
+                    <attribute name="context_sale_keep_unit_price">{"keep_price_unit": True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']"
+                       position="attributes">
+                    <attribute name="context_sale_keep_unit_price">{"keep_price_unit": True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</openerp>
