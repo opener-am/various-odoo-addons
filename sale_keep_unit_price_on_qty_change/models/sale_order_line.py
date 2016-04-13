@@ -3,6 +3,7 @@ from openerp import api, models
 
 
 class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     @api.multi
     def product_id_change(
@@ -11,7 +12,7 @@ class SaleOrderLine(models.Model):
             lang=False, update_tax=True, date_order=False, packaging=False,
             fiscal_position=False, flag=False):
         """ Keep price unit depending on the context """
-        res = super(self, SaleOrderLine).product_id_change(
+        res = super(SaleOrderLine, self).product_id_change(
             pricelist, product, qty=qty, uom=uom, qty_uos=qty_uos, uos=uos,
             name=name, partner_id=partner_id, lang=lang, update_tax=update_tax,
             date_order=date_order, packaging=packaging,
